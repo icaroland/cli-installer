@@ -15,7 +15,8 @@ then
 
    printf "\n" >> ~/.zshrc
    echo "alias icaro="java -jar ~/icaro/cli.jar"" >> ~/.zshrc
- 
+    
+    zsh
    . ~/.zshrc
 fi
 

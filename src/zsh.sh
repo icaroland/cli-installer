@@ -8,7 +8,7 @@ fi
 
 if [ "$(grep -rnw ~/.zshrc -e 'alias icaro' | wc -l)" -eq 0 ]; then
    printf "\n" >> ~/.zshrc
-   echo "alias icaro=\"java -jar ~/icaro/cli/cli-""${last_tag}"".jar\"" >> ~/.zshrc
+   echo "alias icaro=\"java -jar ~/icaro/cli/cli-${last_tag}.jar\"" >> ~/.zshrc
 fi
 
 

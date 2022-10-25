@@ -7,6 +7,7 @@ fi
 
 
 if [ "$(grep -rnw ~/.zshrc -e 'alias icaro' | wc -l)" -eq 0 ]; then
+   last_tag=$(curl "https://api.github.com/repos/icarolang/cli/tags" | awk "FNR == 3 {print $3}" | tr -d ' :",' | sed s/"name"//)
    printf "\n" >> ~/.zshrc
    echo "alias icaro=\"java -jar ~/icaro/cli/cli-${last_tag}.jar\"" >> ~/.zshrc
 fi

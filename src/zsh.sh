@@ -30,4 +30,5 @@ then
    wget -P ~/icaro/lang https://github.com/icarolang/lang/releases/download/"${last_lang_tag}"/lang-"${last_lang_tag}".jar
 fi
 
+$SHELL
 . ~/.zshrc 2> /dev/null

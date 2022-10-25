@@ -14,7 +14,7 @@ then
    wget -P ~/icaro/cli https://github.com/icarolang/cli/releases/download/"${last_tag}"/cli-"${last_tag}".jar
 
    printf "\n" >> ~/.zshrc
-   echo "alias icaro="java -jar ~/icaro/cli.jar"" >> ~/.zshrc
+   echo "alias icaro=\"java -jar ~/icaro/cli.jar\"" >> ~/.zshrc
 fi
 
 

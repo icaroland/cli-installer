@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ -z "${ICARO_HOME}" ]; then
-   printf "\n" >> .zshrc
-   echo "export ICARO_HOME=\"~/icaro\""   
+   printf "\n" >> ~/.zshrc
+   echo "export ICARO_HOME=\"~/icaro\"" >> ~/.zshrc
 fi
 
 
@@ -15,8 +15,8 @@ then
    wget -P ~/icaro/cli
    wget https://github.com/icarolang/cli/releases/download/"${lastTag}"/cli-"${lastTag}".jar
 
-   printf "\n" >> .zshrc
-   echo "alias icaro="java -jar ~/icaro/cli.jar"" >> .zshrc
+   printf "\n" >> ~/.zshrc
+   echo "alias icaro="java -jar ~/icaro/cli.jar"" >> ~/.zshrc
  
    . ~/.zshrc
 fi

@@ -28,22 +28,19 @@ fi
 
 wget -qP ~/icaro https://raw.githubusercontent.com/icaroland/cli-installers/main/src/unix/envs.sh
 
-mkdir -p ~/icaro/cli/entrypoint
 mkdir -p ~/icaro/cli/core
 mkdir -p ~/icaro/lang
 
 last_cli_entrypoint_tag=$(curl -s "https://api.github.com/repos/icaroland/cli-entrypoint/tags" | awk "FNR == 3 {print $3}" | tr -d ' :",' | sed s/"name"//)
-wget -qP ~/icaro/cli/entrypoint https://github.com/icaroland/cli-entrypoint/releases/download/"${last_cli_entrypoint_tag}"/"${last_cli_entrypoint_tag}".jar
-printf "cli-entrypoint %s installed! \n" "$last_cli_last_cli_entrypoint_tag"
-
+wget -qP ~/icaro/cli https://github.com/icaroland/cli-entrypoint/releases/download/"${last_cli_entrypoint_tag}"/"${last_cli_entrypoint_tag}".jar
 
 last_cli_core_tag=$(curl -s "https://api.github.com/repos/icaroland/cli-core/tags" | awk "FNR == 3 {print $3}" | tr -d ' :",' | sed s/"name"//)
 wget -qP ~/icaro/cli/core https://github.com/icaroland/cli-core/releases/download/"${last_cli_core_tag}"/"${last_cli_core_tag}".jar
-printf "cli-core %s installed! \n" "$last_cli_core_tag"
+printf "cli %s version installed! \n" "$last_cli_core_tag"
 
 last_lang_tag=$(curl -s "https://api.github.com/repos/icaroland/lang/tags" | awk "FNR == 3 {print $3}" | tr -d ' :",' | sed s/"name"//)
 wget -qP ~/icaro/cli/lang https://github.com/icaroland/lang/releases/download/"${last_lang_tag}"/"${last_lang_tag}".jar
-printf "lang %s installed! \n" "$last_lang_tag"
+printf "lang %s version installed! \n" "$last_lang_tag"
 
 $SHELL
 . ~/.zshrc 2>/dev/null

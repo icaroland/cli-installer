@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: tests
-        run: sh ../../src/unix/installer.sh
+        run: ls && sh ../../src/unix/installer.sh

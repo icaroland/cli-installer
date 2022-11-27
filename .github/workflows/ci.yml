@@ -6,4 +6,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: tests
+      - uses: actions/checkout@v3
         run: sh ../../src/unix/installer.sh

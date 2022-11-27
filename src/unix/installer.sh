@@ -6,7 +6,7 @@ if ! command -v java >/dev/null; then
 fi
 
 if [ "$(javap -verbose java.lang.String | grep "major version" | cut -d " " -f5)" -lt 55 ]; then
-   echo "Error: the java version in use should be >= 11"
+   echo "Error: the java version in use should be 11+"
    exit 1
 fi
 
@@ -19,7 +19,7 @@ if [ "$(grep -rnw ~/.zshrc -e 'source ~/icaro/envs.sh 2>/dev/null' | wc -l)" -eq
    printf "\nsource ~/icaro/envs.sh 2>/dev/null" >> ~/.zshrc
 fi
 
-wget -qP ~/icaro https://raw.githubusercontent.com/icaroland/cli-installers/main/src/unix/envs.sh
+wget -qP ~/icaro https://raw.githubusercontent.com/icaroland/cli-installer/src/unix/envs.sh
 
 mkdir -p ~/icaro/cli/core
 mkdir -p ~/icaro/lang

@@ -9,4 +9,4 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '8'
-        run: sudo sh test/unix/wrongJavaInstalled.sh
+      - run: sudo sh test/unix/wrongJavaInstalled.sh

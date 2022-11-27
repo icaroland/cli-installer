@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: tests
-        run: echo "hello"
+        run: sh ../../src/unix/installer.sh

@@ -1,9 +1,8 @@
 name: CI
-on:
-  [ push ]
+on: push
 jobs:
-  container-test-job:
-    runs-on: macos-latest
+  wrong-installed-java:
+    runs-on: [ macos-latest, ubuntu-latest ]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3

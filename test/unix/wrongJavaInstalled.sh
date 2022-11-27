@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sh ../../src/unix/installer.sh
+sh src/unix/installer.sh
 #
 #if [ "$(sh ../../src/unix/installer.sh)" != "Error: java should be at least of version 11 (current version: 8)" ]; then
 #   echo "test failed"

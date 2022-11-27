@@ -1,14 +1,12 @@
 #!/bin/sh
 
 if ! command -v java >/dev/null; then
-	echo "Error: java is required to install Icaro!"
+	echo "Error: java 11+ is required to install Icaro!"
 	exit 1
 fi
 
-JAVA_V="$(java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d'.' -f1)" 
-
-if [ "$JAVA_V" -lt 11 ]; then
-   echo "Error: java should be at least of version 11 (current version: $JAVA_V)"
+if [ "$(javap -verbose java.lang.String | grep "major version" | cut -d " " -f5)" -lt 55 ]; then
+   echo "Error: the java version in use should be >= 11"
    exit 1
 fi
 

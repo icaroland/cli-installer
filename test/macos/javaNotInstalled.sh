@@ -2,4 +2,4 @@
 
 rm -rf /Library/Java
 
-java
+sh src/unix/installer.sh

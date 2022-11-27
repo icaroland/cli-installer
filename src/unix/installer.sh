@@ -1,10 +1,5 @@
 #!/bin/sh
 
-if ! command -v unzip >/dev/null; then
-	echo "Error: unzip is required to install Icaro!"
-	exit 1
-fi
-
 if ! command -v java >/dev/null; then
 	echo "Error: java is required to install Icaro!"
 	exit 1

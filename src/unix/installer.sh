@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if ! command -v java >/dev/null; then
+if ! command -v java -version >/dev/null; then
 	echo "Error: java is required to install Icaro!"
 	exit 1
 fi

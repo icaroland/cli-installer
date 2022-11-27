@@ -7,4 +7,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: tests
-        run: unset java && sh src/unix/installer.sh
+        run: sh test/macos/javaNotInstalled.sh

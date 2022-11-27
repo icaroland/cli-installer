@@ -1,7 +1,7 @@
 name: CI
 on: push
 jobs:
-  wrong-installed-java:
+  wrong-java-on-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -9,4 +9,4 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '8'
-      - run: sudo sh test/unix/wrongJavaInstalled.sh
+        run: sudo sh test/unix/wrongJavaInstalled.sh

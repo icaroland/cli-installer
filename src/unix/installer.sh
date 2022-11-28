@@ -36,5 +36,4 @@ last_lang_tag=$(curl -fsSL "https://api.github.com/repos/icaroland/lang/tags" | 
 wget -qP ~/icaro/lang https://github.com/icaroland/lang/releases/download/"${last_lang_tag}"/"${last_lang_tag}".jar
 printf "lang %s installed! \n" "$last_lang_tag"
 
-$SHELL 
 . ~/.zshrc 2>/dev/null

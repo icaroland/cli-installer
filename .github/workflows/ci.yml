@@ -1,12 +1,38 @@
 name: CI
 on: push
 jobs:
-  icaro-is-correctly-installed-on-macos:
-    runs-on: macos-latest
+  test:
+    strategy:
+      matrix:
+        os: [ macOS-latest ]
+
+    runs-on: ${{ matrix.os }}
+
     steps:
+      - name: Checkout
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
-      - run: sh test/macos.sh
+
+      - name: lint
+        if: matrix.os == 'macOS-latest'
+        run: |
+          brew install shfmt shellcheck
+          shfmt -d .
+          shellcheck -s sh *.sh
+
+      - name: tests shell
+        shell: bash
+        run: sh test/macos.sh
+
+      - name: tests powershell
+        if: matrix.os == 'windows-latest'
+        shell: powershell
+        run: ./install_test.ps1
+
+      - name: tests powershell core
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: ./install_test.ps1

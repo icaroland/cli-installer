@@ -1,7 +1,7 @@
 name: CI
 on: push
 jobs:
-  icaro-installed-on-macos:
+  icaro-is-correctly-installed-on-macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
@@ -9,4 +9,4 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - run: echo hello word
+      - run: test/macos.sh

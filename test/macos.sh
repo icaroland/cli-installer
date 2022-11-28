@@ -10,3 +10,4 @@ curl -fsSL "https://api.github.com/repos/icaroland/cli-entrypoint/tags" | awk "F
 #sh src/unix/installer.sh
 
 #icaro help
+ 

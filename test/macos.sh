@@ -1,7 +1,7 @@
 #!/bin/sh
 touch ~/.zshrc
 
-curl -v "https://api.github.com/repos/icaroland/cli-entrypoint/tags" | awk "FNR == 3 {print $3}" | tr -d ' :",' | sed s/"name"//
+curl -fsSL "https://api.github.com/repos/icaroland/cli-entrypoint/tags" | awk "FNR == 3 {print $3}" | tr -d ' :",' | sed s/"name"//
 
 #last_cli_entrypoint_tag=$(curl -vs "https://api.github.com/repos/icaroland/cli-entrypoint/tags" | awk "FNR == 3 {print $3}" | tr -d ' :",' | sed s/"name"//)
 #echo "$last_cli_entrypoint_tag"

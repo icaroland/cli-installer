@@ -1,4 +1,6 @@
 #!/bin/sh
+echo ".zshrc file" >> ~/.zshrc
+cat ~/.zshrc
 sh src/unix/installer.sh
-ls ~/icaro
-#icaro help
+source ~/.zshrc 
+icaro help

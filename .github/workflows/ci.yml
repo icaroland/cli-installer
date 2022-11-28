@@ -9,4 +9,4 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - run: test/macos.sh
+      - run: sh test/macos.sh

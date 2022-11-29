@@ -1,12 +1,11 @@
 name: CI
-on: push
+on:
+  [ push ]
 jobs:
-  icaro-installed-on-macos:
-    runs-on: macos-latest
+  container-test-job:
+    runs-on: ubuntu-latest
+    container: maven:3.8.6-eclipse-temurin-11-alpine
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-      - run: echo hello word
+      - name: tests
+        run: mvn test

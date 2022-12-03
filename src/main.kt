@@ -1,4 +1,3 @@
-import com.google.gson.Gson
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -58,20 +57,20 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
                 .uri(URI("https://api.github.com/repos/icaroland/$repoName/releases/latest"))
                 .GET()
                 .build(), HttpResponse.BodyHandlers.ofString()
-        ).body()
+        )
 
     println(response)
-
-    val lastRelease: String = Gson().fromJson(response, Map::class.java)["tag_name"] as String
-
-    println("$repoName $lastRelease is installing...")
-
-    FileUtils.copyURLToFile(
-        URL("https://github.com/icaroland/$repoName/releases/latest/download/$lastRelease.jar"),
-        File("$HOME/icaro/$targetFolder/$lastRelease.jar")
-    )
-
-    println("$repoName $lastRelease installed")
+//
+//    val lastRelease: String = Gson().fromJson(response, Map::class.java)["tag_name"] as String
+//
+//    println("$repoName $lastRelease is installing...")
+//
+//    FileUtils.copyURLToFile(
+//        URL("https://github.com/icaroland/$repoName/releases/latest/download/$lastRelease.jar"),
+//        File("$HOME/icaro/$targetFolder/$lastRelease.jar")
+//    )
+//
+//    println("$repoName $lastRelease installed")
 }
 
 fun downloadLastReleaseDirectly(repoName: String, targetFolder: String, targetFile: String) {

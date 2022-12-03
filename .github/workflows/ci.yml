@@ -9,4 +9,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-      - run: mvn test
+      - run: |
+          touch ~/.zshrc
+          mvn test
+          source ~/.zshrc
+          icaro -help

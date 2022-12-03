@@ -13,6 +13,28 @@ import java.net.http.HttpResponse
 val HOME: String = System.getenv("HOME")
 
 fun main() {
+    createIcaroFoldersAndFiles()
+
+    println("starting to install Icaro!")
+
+    runBlocking {
+        listOf(
+            launch {
+                downloadLastReleaseDirectly("cli-entrypoint", "cli", "entrypoint.jar")
+            },
+            launch {
+                downloadLastRelease("cli-core", "cli/core")
+            },
+            launch {
+                downloadLastRelease("lang", "lang")
+            }
+        ).joinAll()
+    }
+
+    println("\n\nclose and reopen this terminal or launch source ~/.zshrc to use icaro \n\n")
+}
+
+fun createIcaroFoldersAndFiles() {
     File("$HOME/icaro").deleteRecursively()
     File("$HOME/icaro/cli/core").mkdirs()
     File("$HOME/icaro/lang").mkdirs()
@@ -27,29 +49,6 @@ fun main() {
 
     if ("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh" !in File("$HOME/.zshrc").readText())
         File("$HOME/.zshrc").appendText("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh")
-
-    println("starting to install Icaro!")
-
-    runBlocking {
-        listOf(
-            launch {
-                println("cli entrypoint is installing...")
-                FileUtils.copyURLToFile(
-                    URL("https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar"),
-                    File("$HOME/icaro/cli/entrypoint.jar")
-                )
-                println("cli-entrypoint installed")
-            },
-            launch {
-                downloadLastRelease("cli-core", "cli/core")
-            },
-            launch {
-                downloadLastRelease("lang", "lang")
-            }
-        ).joinAll()
-    }
-
-    println("\n\nclose and reopen this terminal or launch source ~/.zshrc to use icaro \n\n")
 }
 
 fun downloadLastRelease(repoName: String, targetFolder: String) {
@@ -72,3 +71,15 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
 
     println("$repoName $lastRelease installed")
 }
+
+fun downloadLastReleaseDirectly(repoName: String, targetFolder: String, targetFile: String) {
+    println("$repoName is installing...")
+
+    FileUtils.copyURLToFile(
+        URL("https://github.com/icaroland/$repoName/releases/latest/download/$targetFile.jar"),
+        File("$HOME/icaro/$targetFolder/$targetFile.jar")
+    )
+
+    println("$repoName installed")
+}
+

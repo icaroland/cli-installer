@@ -1,3 +1,7 @@
+import com.google.gson.Gson
+import kotlinx.coroutines.joinAll
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.apache.commons.io.FileUtils
 import java.io.File
 import java.net.URI
@@ -6,26 +10,65 @@ import java.net.http.HttpClient
 import java.net.http.HttpRequest
 import java.net.http.HttpResponse
 
+val HOME: String = System.getenv("HOME")
 
 fun main() {
-    callGithubApi()
-}
+    File("$HOME/icaro").deleteRecursively()
+    File("$HOME/icaro/cli/core").mkdirs()
+    File("$HOME/icaro/lang").mkdirs()
 
-fun downloadEnvFile() {
-    FileUtils.copyURLToFile(
-        URL("https://raw.githubusercontent.com/icaroland/cli-installer/main/src/unix/envs.sh"),
-        File("envs.sh")
+    File("$HOME/icaro/env.sh").writeText(
+        """
+        #!/bin/sh
+        export ICARO_HOME="${'$'}HOME/icaro"
+        alias icaro="java -jar ~/icaro/cli/entrypoint.jar"
+        """.trimIndent()
     )
+
+    if ("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh" !in File("$HOME/.zshrc").readText())
+        File("$HOME/.zshrc").appendText("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh")
+
+    println("starting to install Icaro!")
+
+    runBlocking {
+        listOf(
+            launch {
+                println("cli entrypoint is installing...")
+                FileUtils.copyURLToFile(
+                    URL("https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar"),
+                    File("$HOME/icaro/cli/entrypoint.jar")
+                )
+                println("cli-entrypoint installed")
+            },
+            launch {
+                downloadLastRelease("cli-core", "cli/core")
+            },
+            launch {
+                downloadLastRelease("lang", "lang")
+            }
+        ).joinAll()
+    }
+
+    println("\n\nclose and reopen this terminal or launch source ~/.zshrc to use icaro \n\n")
 }
 
-fun callGithubApi() {
-    val request = HttpRequest.newBuilder()
-        .uri(URI("https://api.github.com/repos/icaroland/cli-entrypoint/tags"))
-        .GET()
-        .build()
-
+fun downloadLastRelease(repoName: String, targetFolder: String) {
     val response =
-        HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString()).body()
+        HttpClient.newHttpClient().send(
+            HttpRequest.newBuilder()
+                .uri(URI("https://api.github.com/repos/icaroland/$repoName/releases/latest"))
+                .GET()
+                .build(), HttpResponse.BodyHandlers.ofString()
+        ).body()
 
-    print(response)
+    val lastRelease: String = Gson().fromJson(response, Map::class.java)["tag_name"] as String
+
+    println("$repoName $lastRelease is installing...")
+
+    FileUtils.copyURLToFile(
+        URL("https://github.com/icaroland/$repoName/releases/latest/download/$lastRelease.jar"),
+        File("$HOME/icaro/$targetFolder/$lastRelease.jar")
+    )
+
+    println("$repoName $lastRelease installed")
 }

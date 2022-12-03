@@ -19,12 +19,12 @@ fun main() {
 
     runBlocking {
         listOf(
-            launch {
-                downloadLastReleaseDirectly("cli-entrypoint", "cli", "entrypoint.jar")
-            },
-            launch {
-                downloadLastRelease("cli-core", "cli/core")
-            },
+//            launch {
+//                downloadLastReleaseDirectly("cli-entrypoint", "cli", "entrypoint.jar")
+//            },
+//            launch {
+//                downloadLastRelease("cli-core", "cli/core")
+//            },
             launch {
                 downloadLastRelease("lang", "lang")
             }
@@ -59,6 +59,8 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
                 .GET()
                 .build(), HttpResponse.BodyHandlers.ofString()
         ).body()
+
+    println(response)
 
     val lastRelease: String = Gson().fromJson(response, Map::class.java)["tag_name"] as String
 

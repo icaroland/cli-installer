@@ -76,7 +76,7 @@ fun downloadLastReleaseDirectly(repoName: String, targetFolder: String, targetFi
     println("$repoName is installing...")
 
     FileUtils.copyURLToFile(
-        URL("https://github.com/icaroland/$repoName/releases/latest/download/$targetFile.jar"),
+        URL("https://github.com/icaroland/$repoName/releases/latest/download/$targetFile"),
         File("$HOME/icaro/$targetFolder/$targetFile")
     )
 

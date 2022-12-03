@@ -22,12 +22,12 @@ fun main() {
             launch {
                 downloadLastReleaseDirectly("cli-entrypoint", "cli", "entrypoint.jar")
             },
-            launch {
-                downloadLastRelease("cli-core", "cli/core")
-            },
-            launch {
-                downloadLastRelease("lang", "lang")
-            }
+//            launch {
+//                downloadLastRelease("cli-core", "cli/core")
+//            },
+//            launch {
+//                downloadLastRelease("lang", "lang")
+//            }
         ).joinAll()
     }
 

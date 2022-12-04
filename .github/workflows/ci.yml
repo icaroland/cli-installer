@@ -4,6 +4,8 @@ jobs:
   icaro-installed-on-macos:
     runs-on: macos-latest
     steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:

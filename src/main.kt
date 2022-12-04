@@ -60,7 +60,7 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
                 .build(), HttpResponse.BodyHandlers.ofString()
         )
 
-    println("response ${response.statusCode()} ${response.request()} ${response.headers()}")
+    println("response ${response.statusCode()} ${response.body()} ${response.headers()}")
 //
 //    val lastRelease: String = Gson().fromJson(response, Map::class.java)["tag_name"] as String
 //

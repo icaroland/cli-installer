@@ -56,7 +56,6 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
     val response =
         HttpClient.newHttpClient().send(
             HttpRequest.newBuilder()
-                .header("User-Agent", "cli-installer")
                 .uri(URI("https://github.com/icaroland/$repoName/releases/latest/download"))
                 .build(), HttpResponse.BodyHandlers.ofString()
         )

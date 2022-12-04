@@ -10,4 +10,8 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - run: |
-          mvn test
+          touch ~/.zshrc
+          mvn clean package
+          java -jar target/cli-installer-0.1-alpha.1-jar-with-dependencies.jar
+          source ~/.zshrc
+          icaro

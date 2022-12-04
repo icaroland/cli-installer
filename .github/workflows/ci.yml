@@ -6,7 +6,6 @@ jobs:
     container: maven:3.8.6-eclipse-temurin-11-alpine
     steps:
       - uses: actions/checkout@v3
-      - name: tests
         run: |
           touch ~/.bashrc
           mvn clean package

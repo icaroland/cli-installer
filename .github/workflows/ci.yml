@@ -15,4 +15,6 @@ jobs:
           java -jar target/cli-installer-jar-with-dependencies.jar
           source ~/.zshrc
           cat ~/.zshrc
-          icaro -help
+          ls ~/icaro
+          ls ~/icaro/lang
+          ls ~/icaro/cli

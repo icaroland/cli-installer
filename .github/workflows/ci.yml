@@ -11,7 +11,4 @@ jobs:
           java-version: '11'
       - run: |
           touch ~/.zshrc
-          mvn clean package
-          java -jar target/cli-installer-jar-with-dependencies.jar
-          source ~/.zshrc
-          icaro -help
+          ls

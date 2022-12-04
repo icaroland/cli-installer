@@ -56,6 +56,7 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
             HttpRequest.newBuilder()
                 .uri(URI("https://api.github.com/repos/icaroland/$repoName/releases/latest"))
                 .GET()
+                .header("User-Agent", "request")
                 .build(), HttpResponse.BodyHandlers.ofString()
         )
 

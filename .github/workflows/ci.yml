@@ -14,4 +14,4 @@ jobs:
           mvn clean package
           java -jar target/cli-installer-jar-with-dependencies.jar
           source ~/.zshrc
-          icaro
+          icaro -help

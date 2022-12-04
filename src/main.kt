@@ -60,6 +60,8 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
                 .build(), HttpResponse.BodyHandlers.ofString()
         ).body()
 
+    println(response)
+
     val lastRelease: String = Gson().fromJson(response, Map::class.java)["tag_name"] as String
 
     println("$repoName $lastRelease is installing...")

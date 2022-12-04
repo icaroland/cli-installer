@@ -1,4 +1,3 @@
-import com.google.gson.Gson
 import kotlinx.coroutines.joinAll
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -56,13 +55,11 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
         HttpClient.newHttpClient().send(
             HttpRequest.newBuilder()
                 .header("User-Agent", "cli-installer")
-                .uri(URI("https://api.github.com/repos/icaroland/$repoName/releases/latest"))
+                .uri(URI("https://github.com/icaroland/$repoName/releases/latest/download"))
                 .build(), HttpResponse.BodyHandlers.ofString()
-        ).body()
-
-    println(response)
-
-    val lastRelease: String = Gson().fromJson(response, Map::class.java)["tag_name"] as String
+        )
+    
+    val lastRelease = response.headers().map()["location"]!![0].substringAfterLast("/")
 
     println("$repoName $lastRelease is installing...")
 

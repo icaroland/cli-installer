@@ -11,6 +11,8 @@ import java.net.http.HttpResponse
 
 val HOME: String = System.getenv("HOME")
 
+val rcFile = if (System.getProperty("os.name") == "Linux") ".bashrc" else ".zshrc"
+
 fun main() {
     createIcaroFoldersAndFiles()
 
@@ -30,7 +32,7 @@ fun main() {
         ).joinAll()
     }
 
-    println("\n\nclose and reopen this terminal or launch source ~/.zshrc to use icaro \n\n")
+    println("\n\nclose and reopen this terminal or launch source ~/$rcFile to use icaro \n\n")
 }
 
 fun createIcaroFoldersAndFiles() {
@@ -46,8 +48,8 @@ fun createIcaroFoldersAndFiles() {
         """.trimIndent()
     )
 
-    if ("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh" !in File("$HOME/.zshrc").readText())
-        File("$HOME/.zshrc").appendText("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh")
+    if ("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh" !in File("$HOME/$rcFile").readText())
+        File("$HOME/$rcFile").appendText("\n [ -f ~/icaro/env.sh ] && source ~/icaro/env.sh")
 }
 
 fun downloadLastRelease(repoName: String, targetFolder: String) {
@@ -58,7 +60,7 @@ fun downloadLastRelease(repoName: String, targetFolder: String) {
                 .uri(URI("https://github.com/icaroland/$repoName/releases/latest/download"))
                 .build(), HttpResponse.BodyHandlers.ofString()
         )
-    
+
     val lastRelease = response.headers().map()["location"]!![0].substringAfterLast("/")
 
     println("$repoName $lastRelease is installing...")

@@ -10,7 +10,7 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - run: |
-          #!/bin/sh >> ~/.zshrc
+          echo #!/bin/sh >> ~/.zshrc
           mvn clean package
           java -jar target/cli-installer-jar-with-dependencies.jar
           source ~/.zshrc

@@ -1,12 +1,14 @@
 name: CI
 on: push
 jobs:
-  icaro-installed-on-macos:
-    runs-on: macos-latest
+  first:
+    runs-on: ubuntu-latest
+    container: maven:3.8.6-eclipse-temurin-11-alpine
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-      - run: echo hello word
+      - run: |
+          touch ~/.bashrc
+          mvn clean package
+          java -jar target/cli-installer-jar-with-dependencies.jar
+          source ~/.bashrc
+          icaro help

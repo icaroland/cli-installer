@@ -6,7 +6,7 @@ jobs:
     container: maven:3.8.6-eclipse-temurin-11-alpine
     steps:
       - uses: actions/checkout@v3
-        run: |
+      - run: |
           touch ~/.bashrc
           mvn clean package
           java -jar target/cli-installer-jar-with-dependencies.jar

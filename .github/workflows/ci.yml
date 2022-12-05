@@ -10,7 +10,4 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
       - run: |
-          mvn clean package
-          java -jar target/cli-installer-jar-with-dependencies.jar
-          source ~/.bashrc
-          icaro help
+          cat ~/.bashrc

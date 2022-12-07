@@ -1,9 +1,12 @@
 #!/bin/sh
 
 
-curl  -w "%{redirect_url}" -o /dev/null -s "https://github.com/icaroland/lang/releases/latest"
-
-
+#curl  -w "%{redirect_url}" -o /dev/null -s "https://github.com/icaroland/lang/releases/latest"
+#
+##!/bin/sh
+#
+#export ICARO_HOME="$HOME/icaro"
+#alias icaro="java -jar ~/icaro/cli/entrypoint.jar"
 
 
 

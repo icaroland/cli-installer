@@ -1,14 +1,12 @@
 name: CI
 on: push
 jobs:
-  first:
-    runs-on: ubuntu-latest
-    container: maven:3.8.6-eclipse-temurin-11-alpine
+  windows:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - run: |
-          touch ~/.bashrc
-          mvn clean package
-          java -jar target/cli-installer-jar-with-dependencies.jar
-          source ~/.bashrc
-          icaro help
+        shell: pwsh
+        run: ./src/windows.ps1
+      - uses: actions/checkout@v3
+        shell: powershell
+        run: ./src/windows.ps1

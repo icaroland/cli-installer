@@ -4,7 +4,7 @@ $JavaVersion = 0
 
 try
 {
-    $JavaVersion = [int](Get-Command jav | Select-Object -ExpandProperty Version | Select-Object -ExpandProperty Major)
+    $JavaVersion = [int](Get-Command java | Select-Object -ExpandProperty Version | Select-Object -ExpandProperty Major)
 }
 catch
 {

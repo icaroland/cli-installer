@@ -16,5 +16,5 @@ if ($JavaVersion -lt 11)
     throw "Error: the java version in use should be 11+, current: $JavaVersion"
 }
 
-$JavaVersion
-
+rm -r -fo { ~/icaro }
+New-Item -Path "~\" -Name "icaro" -ItemType "directory"

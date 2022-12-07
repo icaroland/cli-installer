@@ -1,8 +1,9 @@
 "starting to install Icaro!"
 
-#If ((Get-Command java | Select-Object -ExpandProperty Version | Select-Object Major).toString() -ne $null)
-#{
-#    $OutlookAccounts | Sort-Object -Property Size_MB -Descending | out-file c:\test.txt;
-#}
+$JavaVersion = [int](Get-Command java | Select-Object -ExpandProperty Version | Select-Object -ExpandProperty Major)
 
-Get-Command java | Select-Object -ExpandProperty Version | Select-Object -ExpandProperty Major
+If ($JavaVersion -ne $null)
+{
+    throw "java 11+ is required to install Icaro!"
+}
+

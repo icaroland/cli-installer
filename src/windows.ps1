@@ -1,1 +1,1 @@
-"starting to install Icaro! \n"
+"starting to install Icaro!"

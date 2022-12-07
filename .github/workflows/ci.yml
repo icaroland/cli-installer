@@ -9,5 +9,5 @@ jobs:
         shell: pwsh
         run: ./src/windows.ps1
       - name: powershell
-        shell: [ powershell, pwsh ]
+        shell: powershell
         run: ./src/windows.ps1

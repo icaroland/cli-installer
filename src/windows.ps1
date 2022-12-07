@@ -17,5 +17,5 @@ if ($JavaVersion -lt 11)
 }
 
 Get-ChildItem -Path ~/icaro -Recurse | Remove-Item -force -recurse
-Remove-Item ~/icaro -Force
+Remove-Item ~/icaro -Force -ErrorAction SilentlyContinue
 New-Item -Path "~\" -Name "icaro" -ItemType "directory"

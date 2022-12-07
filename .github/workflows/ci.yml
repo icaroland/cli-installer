@@ -5,9 +5,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - name: pwsh
-        shell: pwsh
-        run: ./src/windows.ps1
-      - name: powershell
-        shell: powershell
+        #      - name: pwsh
+        #        shell: pwsh
+        #        run: ./src/windows.ps1
+        #      - name: powershell
+        shell: [ powershell, pwsh ]
         run: ./src/windows.ps1

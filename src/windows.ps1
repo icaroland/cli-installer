@@ -1,3 +1,8 @@
 "starting to install Icaro!"
 
-(Get-Command java | Select-Object -ExpandProperty Version | Select-Object Major).toString()
+#If ((Get-Command java | Select-Object -ExpandProperty Version | Select-Object Major).toString() -ne $null)
+#{
+#    $OutlookAccounts | Sort-Object -Property Size_MB -Descending | out-file c:\test.txt;
+#}
+
+(Get-Command java | Select-Object -ExpandProperty Version).toString()

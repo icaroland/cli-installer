@@ -16,5 +16,6 @@ if ($JavaVersion -lt 11)
     throw "Error: the java version in use should be 11+, current: $JavaVersion"
 }
 
-rm -r -fo { ~/icaro }
+Get-ChildItem -Path ~/icaro -Recurse | Remove-Item -force -recurse
+Remove-Item ~/icaro -Force
 New-Item -Path "~\" -Name "icaro" -ItemType "directory"

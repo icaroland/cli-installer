@@ -1,8 +1,12 @@
 "starting to install Icaro!"
 
-$JavaVersion = [int](Get-Command jav | Select-Object -ExpandProperty Version | Select-Object -ExpandProperty Major)
+$JavaVersion = 0
 
-If ($JavaVersion -eq $null)
+try
+{
+    $JavaVersion = [int](Get-Command jav | Select-Object -ExpandProperty Version | Select-Object -ExpandProperty Major)
+}
+catch
 {
     throw "java 11+ is required to install Icaro!"
 }

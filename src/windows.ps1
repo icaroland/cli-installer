@@ -23,7 +23,7 @@ New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 Get-ChildItem -Force -LiteralPath ~
 
 [System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', 'User')
-& $Profile.CurrentUserAllHosts
+. $Profile.CurrentUserAllHosts
 gci env:* | sort-object name
 
 $Profile.CurrentUserAllHosts

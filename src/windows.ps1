@@ -20,10 +20,9 @@ Get-ChildItem -Path ~/icaro -Recurse | Remove-Item -force -recurse
 Remove-Item ~/icaro -ErrorAction SilentlyContinue
 New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 
-Get-ChildItem -Force -LiteralPath ~
-
+new-item -type file -path $profile -force
 [System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', 'User')
-. $Profile.CurrentUserAllHosts
+. $profile
 gci env:* | sort-object name
 
-Get-Content -Path $Profile.CurrentUserAllHosts
+Get-Content -Path $profile

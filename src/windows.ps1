@@ -23,7 +23,7 @@ New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 new-item -type file -path $profile -force
 #[System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', [System.EnvironmentVariableTarget]::Machine)
 . $profile
-$Env:ICARO_HOME = "~/icaro"
-$Env:ICARO_HOME
+#$Env:ICARO_HOME = "~/icaro"
+#$Env:ICARO_HOME
 
 Get-Content -Path $profile

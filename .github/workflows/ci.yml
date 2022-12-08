@@ -11,11 +11,7 @@ jobs:
           java-version: '11'
       - name: pwsh
         shell: pwsh
-        run: |
-          ./src/windows.ps1
-          $Env:Path.Split(';')
+        run: ./src/windows.ps1
       - name: powershell
         shell: powershell
-        run: |
-          ./src/windows.ps1
-          $Env:Path.Split(';')
+        run: ./src/windows.ps1

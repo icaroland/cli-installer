@@ -22,7 +22,6 @@ New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 
 Get-ChildItem -Force -LiteralPath ~
 
-'User', 'Process' | foreach {
-    [Environment]::SetEnvironmentVariable('ICARO_HOME', 'icaro', 'User')
-}
-$Env:Path.Split(';')
+[System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', 'User')
+. $profile
+gci env:* | sort-object name

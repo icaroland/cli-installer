@@ -25,3 +25,5 @@ Get-ChildItem -Force -LiteralPath ~
 [System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', 'User')
 . $profile
 gci env:* | sort-object name
+
+$profile

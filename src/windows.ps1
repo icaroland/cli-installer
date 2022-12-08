@@ -26,4 +26,4 @@ Get-ChildItem -Force -LiteralPath ~
 . $Profile.CurrentUserAllHosts
 gci env:* | sort-object name
 
-$Profile.CurrentUserAllHosts
+Get-Content -Path $Profile.CurrentUserAllHosts

@@ -35,6 +35,10 @@ if [ "$(grep -rnw ~/.zshrc -e 'source ~/icaro/envs.sh 2>/dev/null' | wc -l)" -eq
    printf "\nsource ~/icaro/envs.sh 2>/dev/null" >> ~/.zshrc
 fi
 
+echo "#!/bin/sh" >> ~/icaro/envs.sh
+echo "export ICARO_HOME=\"~/icaro\"" >> ~/icaro/envs.sh
+echo "alias icaro=\"java -jar ~/icaro/cli/entrypoint.jar\"" >> ~/icaro/envs.sh
+
 wget -qP ~/icaro https://raw.githubusercontent.com/icaroland/cli-installer/main/src/unix/envs.sh
 
 mkdir -p ~/icaro/cli/core

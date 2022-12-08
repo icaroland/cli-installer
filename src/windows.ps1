@@ -21,7 +21,7 @@ Remove-Item ~/icaro -ErrorAction SilentlyContinue
 New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 
 new-item -type file -path $profile -force
-[System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', 'User')
+[System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', 'Ma')
 . $profile
 gci env:* | sort-object name
 

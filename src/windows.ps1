@@ -20,7 +20,7 @@
 #Remove-Item ~/icaro -ErrorAction SilentlyContinue
 #New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 #
-#new-item -type file -path $profile -force
+new-item -type file -path $profile -force
 ##[System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', [System.EnvironmentVariableTarget]::Machine)
 #. $profile
 ##$Env:ICARO_HOME = "~/icaro"

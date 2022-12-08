@@ -23,3 +23,4 @@ New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 Get-ChildItem -Force -LiteralPath ~
 
 [System.Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', [System.EnvironmentVariableTarget]::User)
+Get-Alias -Name "ICARO_HOME"

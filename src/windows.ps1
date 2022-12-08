@@ -23,6 +23,6 @@ New-Item -Path "~/" -Name "icaro" -ItemType "directory"
 Get-ChildItem -Force -LiteralPath ~
 
 'User', 'Process' | foreach {
-    [Environment]::SetEnvironmentVariable('ICARO_HOME', '~/icaro', 'User')
+    [Environment]::SetEnvironmentVariable('ICARO_HOME', 'icaro', 'User')
 }
 $Env:Path.Split(';')

@@ -26,4 +26,4 @@ Get-ChildItem -Force -LiteralPath ~
 . $profile
 gci env:* | sort-object name
 
-$profile
+echo $profile

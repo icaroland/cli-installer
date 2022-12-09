@@ -28,6 +28,19 @@
 #}
 #Add-Content -Path ~/icaro/env.ps1 -Value "`$env:ICARO_HOME = `"~/icaro`""
 #Add-Content -Path ~/icaro/env.ps1 -Value "New-Alias -Name `'icaro`' -Value `'java -jar ~/icaro/cli/entrypoint.jar`'"
+
+#$stringToSearch = "search string"
+#$filePath = "C:\path\to\file.ps1"
+#
+#$result = Select-String -Path $filePath -Pattern $stringToSearch -Quiet
+#
+#if ($result) {
+#    Write-Host "The string was found in the file."
+#} else {
+#    Write-Host "The string was not found in the file."
+#}
+
+
 # if not present {
 # Add-Content -Path $profilePath -Value ". ~/icaro/env.ps1"
 #
@@ -36,15 +49,20 @@
 #
 #Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
 #
+
+$lastCliCoreVersion = ""
+
 try
 {
-    $lastCliCoreVersion = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
-    $lastCliCoreVersion
+    $lastCliCoreUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
+    $lastCliCoreVersion = Split-Path -Path $lastCliCoreUrl -Leaf
 }
 catch
 {
-    $_.Exception.Response.Headers
+    $lastCliCoreVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
 }
+
+$lastCliCoreVersion
 #Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/`$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
 
 

@@ -37,32 +37,31 @@ if (-not(Select-String -Path $profilePath -Pattern ". ~/icaro/env.ps1" -Quiet))
 
 Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
 
-$lastCliCoreVersion = ""
-
-try
+function downloadLastVersion
 {
-    $lastCliCoreUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
-    $lastCliCoreVersion = Split-Path -Path $lastCliCoreUrl -Leaf
-}
-catch
-{
-    $lastCliCoreVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
-}
+    param (
+        $repoName,
+        $icaroTargetFolder
+    )
 
-Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
+    $lastVersion = ""
 
-$lastLangVersion = ""
+    try
+    {
+        $lastVersionUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/$repoName/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
+        $lastVersion = Split-Path -Path $lastVersionUrl -Leaf
+    }
+    catch
+    {
+        $lastVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
+    }
 
-try
-{
-    $lastLangUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
-    $lastLangVersion = Split-Path -Path $lastLangUrl -Leaf
-}
-catch
-{
-    $lastLangVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
+    Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/$repoName/releases/download/$lastVersion/$lastVersion.jar" -OutFile "~/icaro/$icaroTargetFolder/$lastVersion.jar"
+
 }
 
-Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
+downloadLastVersion("cli-core", "cli/core")
+
+downloadLastVersion("lang", "lang")
 
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName

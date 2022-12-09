@@ -62,6 +62,8 @@ catch
     $lastCliCoreVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
 }
 
+$lastCliCoreVersion
+
 Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/`$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
 
 

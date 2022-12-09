@@ -38,4 +38,4 @@
 #
 #Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
 
-(Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 1 -SkipHttpErrorCheck).Headers.Location
+(Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 1 -ErrorAction:SilentlyContinue).Headers.Location

@@ -21,8 +21,6 @@ Remove-Item ~/icaro -ErrorAction SilentlyContinue
 New-Item -Path '~/icaro/lang' -ItemType Directory
 New-Item -Path '~/icaro/cli/core' -ItemType Directory
 
-Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
-
 $profilePath = $profile.CurrentUserAllHosts
 if (!(Test-Path $profilePath))
 {
@@ -34,3 +32,5 @@ Add-Content -Path $profilePath -Value "New-Alias -Name `'icaro`' -Value `'java -
 . $profilePath
 
 Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
+
+Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName

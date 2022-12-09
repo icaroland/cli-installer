@@ -55,7 +55,7 @@ $lastLangVersion = ""
 
 try
 {
-    $lastLangUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
+    $lastLangUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
     $lastLangVersion = Split-Path -Path $lastLangUrl -Leaf
 }
 catch

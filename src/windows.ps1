@@ -49,7 +49,20 @@ catch
     $lastCliCoreVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
 }
 
-
 Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
+
+$lastLangVersion = ""
+
+try
+{
+    $lastLangUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
+    $lastLangVersion = Split-Path -Path $lastLangUrl -Leaf
+}
+catch
+{
+    $lastLangVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
+}
+
+Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
 
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName

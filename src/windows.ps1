@@ -26,16 +26,26 @@
 #{
 #    New-Item -ItemType File -Path $profilePath -Force
 #}
-#Add-Content -Path $profilePath -Value "`$env:ICARO_HOME = `"~/icaro`""
-#Add-Content -Path $profilePath -Value "New-Alias -Name `'icaro`' -Value `'java -jar ~/icaro/cli/entrypoint.jar`'"
+#Add-Content -Path ~/icaro/env.ps1 -Value "`$env:ICARO_HOME = `"~/icaro`""
+#Add-Content -Path ~/icaro/env.ps1 -Value "New-Alias -Name `'icaro`' -Value `'java -jar ~/icaro/cli/entrypoint.jar`'"
+# if not present {
+# Add-Content -Path $profilePath -Value ". ~/icaro/env.ps1"
 #
+# }
 #. $profilePath
 #
 #Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
 #
-$lastCliCoreVersion = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
+try
+{
+    $lastCliCoreVersion = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
+    $lastCliCoreVersion
+}
+catch
+{
+    $_.Exception.Response.Headers
+}
 #Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/`$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
 
-$lastCliCoreVersion
 
 #Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName

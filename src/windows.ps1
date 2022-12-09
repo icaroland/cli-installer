@@ -64,7 +64,7 @@ catch
 
 $lastCliCoreVersion
 
-Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/`$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
+Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
 
 
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName

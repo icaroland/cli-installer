@@ -33,4 +33,4 @@ Add-Content -Path $profilePath -Value "New-Alias -Name `'icaro`' -Value `'java -
 
 . $profilePath
 
-Invoke-WebRequest -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli"
+Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli"

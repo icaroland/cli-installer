@@ -18,10 +18,12 @@ if ($JavaVersion -lt 11)
 
 Get-ChildItem -Path ~/icaro -Recurse | Remove-Item -force -recurse
 Remove-Item ~/icaro -ErrorAction SilentlyContinue
-New-Item -Path "~/" -Name "icaro" -ItemType "directory"
-New-Item -Path "~/icaro" -Name "lang" -ItemType "directory"
-New-Item -Path "~/icaro" -Name "cli" -ItemType "directory"
-New-Item -Path "~/icaro/cli" -Name "core" -ItemType "directory"
+
+New-Item -Path '~/icaro/lang' -ItemType Directory
+New-Item -Path '~/icaro/cli/core' -ItemType Directory
+
+Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
+
 
 $profilePath = $profile.CurrentUserAllHosts
 if (!(Test-Path $profilePath))

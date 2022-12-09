@@ -33,7 +33,7 @@ Add-Content -Path $profilePath -Value "New-Alias -Name `'icaro`' -Value `'java -
 
 Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
 
-$lastCliCoreVersion = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -ErrorAction:SilentlyContinue).Headers.Location.toString()
+$lastCliCoreVersion = (Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/latest" -ErrorAction:SilentlyContinue).Headers.Location.tostring
 Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
 
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName

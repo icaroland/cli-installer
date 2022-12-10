@@ -35,7 +35,7 @@
 #}
 #. $profilePath
 #
-#Invoke-WebRequest -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
+Invoke-WebRequest -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
 #
 #$lastCliCoreVersion = ""
 #

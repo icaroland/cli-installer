@@ -27,7 +27,7 @@ if (!(Test-Path $profilePath))
     New-Item -ItemType File -Path $profilePath -Force
 }
 Add-Content -Path ~/icaro/env.ps1 -Value "`$env:ICARO_HOME = `"~/icaro`""
-Add-Content -Path ~/icaro/env.ps1 -Value "New-Alias -Name `'icaro`' -Value `'java -jar entrypoint.jar`'"
+Add-Content -Path ~/icaro/env.ps1 -Value "New-Alias -Name `'icaro`' -Value `'java -jar ~/icaro/cli/entrypoint.jar Main`'"
 
 if (-not(Select-String -Path $profilePath -Pattern ". ~/icaro/env.ps1" -Quiet))
 {
@@ -67,7 +67,4 @@ Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$las
 
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
 
-Push-Location
-cd ~/icaro/cli
-java -jar entrypoint.jar
-Pop-Location
+icaro help

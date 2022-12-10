@@ -66,4 +66,4 @@
 #Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
 #>
 
-java
+java -jar ~/icaro/cli/entrypoint.jar

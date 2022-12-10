@@ -19,7 +19,7 @@
 #Get-ChildItem -Path ~/icaro -Recurse | Remove-Item -force -recurse
 #Remove-Item ~/icaro -ErrorAction SilentlyContinue
 New-Item -Path '~/icaro/lang' -ItemType Directory
-#New-Item -Path '~/icaro/cli/core' -ItemType Directory
+New-Item -Path '~/icaro/cli/core' -ItemType Directory
 #
 #$profilePath = $profile.CurrentUserAllHosts
 #if (!(Test-Path $profilePath))

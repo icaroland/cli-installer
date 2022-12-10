@@ -67,4 +67,4 @@ Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$las
 
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
 
-(cd ~/icaro/cli) -and (java -jar entrypoint.jar)
+$pwd; pushd; cd ~/icaro/cli; java -jar entrypoint.jar; popd; $pwd

@@ -69,5 +69,5 @@ Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
 
 Push-Location
 cd ~/icaro/cli
-icaro help
+java -jar entrypoint.jar
 Pop-Location

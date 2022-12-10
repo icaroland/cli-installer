@@ -69,4 +69,5 @@ Invoke-WebRequest -Uri "https://github.com/icaroland/cli-entrypoint/releases/lat
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
 
 
+cd ~/icaro/cli
 java -jar -verbose "~/icaro/cli/entrypoint.jar"

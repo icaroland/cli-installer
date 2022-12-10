@@ -65,4 +65,4 @@ catch
 
 Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
 
-Start-Process java -ArgumentList "-jar", "~/icaro/cli/entrypoint.jar"
+$( where java )

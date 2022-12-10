@@ -35,7 +35,7 @@ if (-not(Select-String -Path $profilePath -Pattern ". ~/icaro/env.ps1" -Quiet))
 }
 . $profilePath
 
-Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
+Invoke-WebRequest -Uri "https://github.com/icaroland/cli-entrypoint/releases/latest/download/entrypoint.jar" -OutFile "~/icaro/cli/entrypoint.jar"
 
 $lastCliCoreVersion = ""
 
@@ -49,7 +49,7 @@ catch
     $lastCliCoreVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
 }
 
-Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/cli-core/releases/download/$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
+Invoke-WebRequest -Uri "https://github.com/icaroland/cli-core/releases/download/$lastCliCoreVersion/$lastCliCoreVersion.jar" -OutFile "~/icaro/cli/core/$lastCliCoreVersion.jar"
 
 $lastLangVersion = ""
 
@@ -63,6 +63,6 @@ catch
     $lastLangVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
 }
 
-Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
+Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
 
 Start-Process java -ArgumentList "-jar", "~/icaro/cli/entrypoint.jar"

@@ -66,4 +66,7 @@ Invoke-WebRequest -Uri "https://github.com/icaroland/cli-entrypoint/releases/lat
 #Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
 #>
 
-java -jar ~/icaro/cli/entrypoint.jar
+Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
+
+
+#java -jar ~/icaro/cli/entrypoint.jar

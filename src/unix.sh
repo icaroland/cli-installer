@@ -34,8 +34,8 @@ mkdir ~/icaro
 if [ "$(grep -rnw ~/.zshrc -e 'source ~/icaro/envs.sh 2>/dev/null' | wc -l)" -eq 0 ]; then
    printf "\nsource ~/icaro/envs.sh 2>/dev/null" >> ~/.zshrc
 fi
-
 echo "#!/bin/sh" >> ~/icaro/envs.sh
+
 echo "export ICARO_HOME=\"~/icaro\"" >> ~/icaro/envs.sh
 echo "alias icaro=\"java -jar ~/icaro/cli/entrypoint.jar\"" >> ~/icaro/envs.sh
 

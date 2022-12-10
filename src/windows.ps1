@@ -65,4 +65,4 @@ catch
 
 Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
 
-icaro help
+java -jar ~/icaro/cli/entrypoint.jar

@@ -27,7 +27,7 @@ if (!(Test-Path $profilePath))
     New-Item -ItemType File -Path $profilePath -Force
 }
 Add-Content -Path ~/icaro/env.ps1 -Value "`$env:ICARO_HOME = `"~/icaro`""
-Add-Content -Path ~/icaro/env.ps1 -Value "New-Alias -Name `'icaro`' -Value `'java -jar C:\Users\runneradmin\icaro\cli\entrypoint.jar`'"
+Add-Content -Path ~/icaro/env.ps1 -Value "New-Alias -Name `'icaro`' -Value `'(cd ~/icaro/cli) -and (java -jar entrypoint.jar)`'"
 
 if (-not(Select-String -Path $profilePath -Pattern ". ~/icaro/env.ps1" -Quiet))
 {

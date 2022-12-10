@@ -44,19 +44,19 @@ function downloadLastVersion
         $icaroTargetFolder
     )
 
-    $repoName, $icaroTargetFolder
+    $lastVersion = ""
 
-    #    $lastVersion = ""
-    #
-    #    try
-    #    {
-    #        $lastVersionUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/$repoName/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
-    #        $lastVersion = Split-Path -Path $lastVersionUrl -Leaf
-    #    }
-    #    catch
-    #    {
-    #        $lastVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
-    #    }
+    try
+    {
+        $lastVersionUrl = (Invoke-WebRequest -Uri "https://github.com/icaroland/$repoName/releases/latest" -MaximumRedirection 0 -ErrorAction:SilentlyContinue).Headers.Location
+        $lastVersion = Split-Path -Path $lastVersionUrl -Leaf
+    }
+    catch
+    {
+        $lastVersion = Split-Path -Path $_.Exception.Response.Headers.Location -Leaf
+    }
+
+    $lastVersion
     #
     #    Invoke-WebRequest -Verbose -Uri "https://github.com/icaroland/$repoName/releases/download/$lastVersion/$lastVersion.jar" -OutFile "~/icaro/$icaroTargetFolder/$lastVersion.jar"
 

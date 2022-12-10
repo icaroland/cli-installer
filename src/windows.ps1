@@ -27,7 +27,6 @@ if (!(Test-Path $profilePath))
     New-Item -ItemType File -Path $profilePath -Force
 }
 Add-Content -Path ~/icaro/env.ps1 -Value "`$env:ICARO_HOME = `"`$env:USERPROFILE/icaro`""
-#Add-Content -Path ~/icaro/env.ps1 -Value "New-Alias -Name `'icaro`' -Value `'pushd; cd ~/icaro/cli; java -jar entrypoint.jar; popd`'"
 Add-Content -Path ~/icaro/env.ps1 -Value "function icaro { pushd; cd ~/icaro/cli; java -jar entrypoint.jar `$args; popd }"
 
 if (-not(Select-String -Path $profilePath -Pattern ". ~/icaro/env.ps1" -Quiet))

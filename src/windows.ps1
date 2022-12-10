@@ -69,5 +69,5 @@ Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
 
 Push-Location
 cd ~/icaro/cli
-icaro
+icaro help
 Pop-Location

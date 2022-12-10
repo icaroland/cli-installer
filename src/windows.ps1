@@ -64,7 +64,6 @@
 #}
 #
 #Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$lastLangVersion/$lastLangVersion.jar" -OutFile "~/icaro/lang/$lastLangVersion.jar"
+#>
 
-$java = $( where java )
-
-$java -jar stuazzi
+java

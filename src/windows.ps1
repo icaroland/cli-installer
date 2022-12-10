@@ -67,5 +67,7 @@ Invoke-WebRequest -Uri "https://github.com/icaroland/lang/releases/download/$las
 
 Get-ChildItem -Path '~/icaro' -Recurse | Format-List -Property FullName
 
-icacls ~/icaro/cli/entrypoint.jar /grant Users:(RX)
+icacls ~/icaro/cli/entrypoint.jar /grant "Users:(RX)"
+
+icaro help
 
